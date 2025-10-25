@@ -1,0 +1,588 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <title>Happy Anniversary ♡</title>
+    <meta name="description" content="A tiny romantic website for our first anniversary." />
+    <meta name="theme-color" content="#0b0f19" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=Great+Vibes&display=swap"
+        rel="stylesheet">
+    <style>
+        /* --- Base / Tokens --- */
+        :root {
+            --bg: black;
+            /* background */
+            --card: #121828;
+            /* surfaces */
+            --ink: #e6f0ff;
+            /* text */
+            --muted: #a6b3d0;
+            /* secondary text */
+            --accent: #9d0208;
+            /* pink */
+            --accent-2: #d00000;
+            /* cyan */
+            --shadow: 0 10px 30px rgba(0, 0, 0, .25);
+        }
+
+        * {
+            box-sizing: border-box
+        }
+
+        html {
+            font-size: 16px
+        }
+
+        body {
+            margin: 0;
+            min-height: 100dvh;
+            background:
+                radial-gradient(1200px 600px at 80% -10%, rgba(255, 126, 179, .15), transparent 60%),
+                radial-gradient(1000px 500px at -10% 110%, rgba(122, 240, 255, .12), transparent 60%),
+                var(--bg);
+            color: var(--ink);
+            font-family: Poppins, system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif;
+            -webkit-font-smoothing: antialiased;
+            text-rendering: optimizeLegibility;
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none
+        }
+
+        img {
+            max-width: 100%;
+            display: block;
+            height: auto;
+            border: 0
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px
+        }
+
+        /* --- Header / Nav (mobile-first with hamburger) --- */
+        .nav {
+            position: sticky;
+            top: 0;
+            backdrop-filter: blur(8px);
+            background: rgba(11, 15, 25, 0.6);
+            border-bottom: 1px solid rgba(255, 255, 255, .08);
+            z-index: 50
+        }
+
+        .nav .row {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 14px 0
+        }
+
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-weight: 700
+        }
+
+        .logo {
+            width: 34px;
+            height: 34px;
+            border-radius: 12px;
+            display: grid;
+            place-items: center;
+            background: linear-gradient(135deg, var(--accent), var(--accent-2));
+            color: #111;
+            font-weight: 900
+        }
+
+        /* hamburger */
+        #menu-toggle {
+            appearance: none;
+            -webkit-appearance: none;
+            width: 36px;
+            height: 28px;
+            display: grid;
+            place-items: center;
+            cursor: pointer
+        }
+
+        #menu-toggle span,
+        #menu-toggle::before,
+        #menu-toggle::after {
+            content: "";
+            display: block;
+            width: 24px;
+            height: 2px;
+            background: var(--ink);
+            transition: .25s
+        }
+
+        #menu-toggle::before {
+            transform: translateY(-7px)
+        }
+
+        #menu-toggle::after {
+            transform: translateY(7px)
+        }
+
+        #menu-toggle.active span {
+            opacity: 0
+        }
+
+        #menu-toggle.active::before {
+            transform: translateY(0) rotate(45deg)
+        }
+
+        #menu-toggle.active::after {
+            transform: translateY(0) rotate(-45deg)
+        }
+
+        .menu {
+            position: fixed;
+            inset: 56px 0 auto 0;
+            display: none;
+            background: rgba(11, 15, 25, .95);
+            backdrop-filter: blur(6px);
+            border-top: 1px solid rgba(255, 255, 255, .08)
+        }
+
+        .menu a {
+            display: block;
+            padding: 16px 20px;
+            border-bottom: 1px solid rgba(255, 255, 255, .06);
+            color: var(--muted)
+        }
+
+        .menu.show {
+            display: block
+        }
+
+        .cta {
+            display: inline-block;
+            padding: 10px 14px;
+            border-radius: 14px;
+            background: rgba(255, 255, 255, .08);
+            border: 1px solid rgba(255, 255, 255, .12)
+        }
+
+        .cta:hover {
+            background: rgba(255, 255, 255, .14)
+        }
+
+        /* --- Hero --- */
+        .hero {
+            padding: 56px 0
+        }
+
+        .grid {
+            display: grid;
+            gap: 24px
+        }
+
+        h1 {
+            font-size: clamp(28px, 7vw, 64px);
+            margin: 0;
+            line-height: 1.05;
+            font-weight: 700
+        }
+
+        .script {
+            font-family: "Great Vibes", cursive;
+            font-size: clamp(28px, 6vw, 56px);
+            color: transparent;
+            -webkit-text-stroke: 1px rgba(255, 255, 255, .65);
+            text-stroke: 1px rgba(255, 255, 255, .65)
+        }
+
+        .lead {
+            color: var(--muted);
+            margin-top: 14px
+        }
+
+        .card {
+            background: linear-gradient(180deg, rgba(189, 25, 25, 0.06), rgba(215, 14, 14, 0.02));
+            border: 1px solid rgba(231, 11, 11, 0.12);
+            border-radius: 24px;
+            padding: 22px;
+            box-shadow: var(--shadow)
+        }
+
+        .mock {
+            aspect-ratio: 4/3;
+            border-radius: 18px;
+            background: linear-gradient(135deg, rgba(232, 7, 7, 0.25), rgba(255, 4, 0, 0.2));
+            display: grid;
+            place-items: center;
+            color: #e6e6e6;
+            font-weight: 700;
+            letter-spacing: .1em
+        }
+
+        /* --- Sections --- */
+        section {
+            padding: 56px 0
+        }
+
+        h2 {
+            font-size: clamp(22px, 5vw, 36px);
+            margin: 0 0 8px
+        }
+
+        p.sub {
+            color: var(--muted);
+            margin: 0 0 22px
+        }
+
+        /* Timeline (kept simple) */
+        .timeline {
+            position: relative;
+            margin-top: 12px
+        }
+
+        .timeline::before {
+            content: "";
+            position: absolute;
+            left: 10px;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: linear-gradient(var(--accent), transparent)
+        }
+
+        .titem {
+            position: relative;
+            padding-left: 32px;
+            margin: 18px 0
+        }
+
+        .titem::before {
+            content: "";
+            position: absolute;
+            left: 3px;
+            top: 6px;
+            width: 14px;
+            height: 14px;
+            border-radius: 50%;
+            background: radial-gradient(circle at 35% 35%, #fff, var(--accent));
+            box-shadow: 0 0 0 3px rgba(255, 126, 179, .25)
+        }
+
+        .tdate {
+            font-size: .9rem;
+            color: var(--muted)
+        }
+
+        /* Gallery – auto-fit responsive */
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+            gap: 12px
+        }
+
+        .ph,
+        .gallery img {
+            aspect-ratio: 1/1;
+            border-radius: 16px;
+            background: linear-gradient(135deg, rgba(255, 255, 255, .08), rgba(255, 255, 255, .02));
+            border: 1px solid rgba(255, 255, 255, .12);
+            display: grid;
+            place-items: center;
+            color: var(--muted)
+        }
+
+        /* Footer */
+        footer {
+            border-top: 1px solid rgba(255, 255, 255, .08);
+            padding: 28px 0;
+            color: var(--muted)
+        }
+
+        /* Hearts animation */
+        .hearts {
+            position: absolute;
+            inset: 0;
+            pointer-events: none;
+            overflow: hidden
+        }
+
+        .heart {
+            position: absolute;
+            bottom: -20px;
+            left: var(--x, 50%);
+            width: 16px;
+            height: 16px;
+            background: var(--accent);
+            transform: rotate(45deg);
+            animation: float 6s linear infinite;
+            opacity: .7
+        }
+
+        .heart::before,
+        .heart::after {
+            content: "";
+            position: absolute;
+            width: 16px;
+            height: 16px;
+            background: var(--accent);
+            border-radius: 50%
+        }
+
+        .heart::before {
+            left: -8px
+        }
+
+        .heart::after {
+            top: -8px
+        }
+
+        @keyframes float {
+            to {
+                transform: translateY(-120vh) rotate(45deg);
+                opacity: 0
+            }
+        }
+
+        /* Motion safety */
+        @media (prefers-reduced-motion: reduce) {
+            .heart {
+                animation: none
+            }
+        }
+
+        /* --- Breakpoints --- */
+        /* >= 600px (small tablets) */
+        @media (min-width:600px) {
+            .hero {
+                padding: 72px 0
+            }
+        }
+
+        /* >= 768px (tablets) */
+        @media (min-width:768px) {
+            .grid {
+                grid-template-columns: 1.1fr .9fr
+            }
+
+            .menu {
+                position: static;
+                display: flex;
+                background: transparent;
+                border: 0
+            }
+
+            .menu a {
+                border: 0;
+                padding: 0 0 0 18px
+            }
+
+            #menu-toggle {
+                display: none
+            }
+        }
+
+        /* >= 1024px (small desktops) */
+        @media (min-width:1024px) {
+            .container {
+                max-width: 1200px
+            }
+        }
+
+        /* >= 1440px (large desktops) */
+        @media (min-width:1440px) {
+            html {
+                font-size: 18px
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <nav class="nav">
+        <div class="container row">
+            <a class="brand" href="#top">
+                <span class="logo">♡</span>
+                <span>Us • 1 Year</span>
+            </a>
+            <div id="menu-toggle"><span></span></div>
+            <div class="menu" id="menu">
+                <a href="#story">Story</a>
+                <a href="#memories">Memories</a>
+                <a class="cta" href="#letter">Letter</a>
+            </div>
+        </div>
+    </nav>
+
+    <header class="hero" id="top">
+        <div class="container">
+            <div class="grid">
+                <div>
+                    <h1>Happy Birthday & <span class="script">1st Anniversary</span></h1>
+                    <p class="lead">To: <strong>Цэлмүүн Эрдэнэ </strong> — From: <strong>Энхдөлгөөн</strong><br />Бидний хамтдаа туулсан аялал, хайр дүүрэн нэг жилийг тэмдэглэе.</p>
+                </div>
+                <div class="card">
+                    <div class="mock ">Хамтдаа өнгөрүүлсэн мөчүүд</div>
+                </div>
+            </div>
+            <!-- floating hearts -->
+            <div class="hearts" aria-hidden="true">
+                <div class="heart" style="--x:15%; animation-delay:0s"></div>
+                <div class="heart" style="--x:35%; animation-delay:1s"></div>
+                <div class="heart" style="--x:55%; animation-delay:2s"></div>
+                <div class="heart" style="--x:75%; animation-delay:3s"></div>
+                <div class="heart" style="--x:90%; animation-delay:4s"></div>
+            </div>
+        </div>
+    </header>
+
+    <main id="main">
+        <section id="story">
+            <div class="container">
+                <h2>Хамтдаа бичсэн түүх</h2>
+                <p class="sub">Их хайр, гүн мэдрэмжийн бяцхан түүх.</p>
+                <div class="timeline">
+                    <div class="titem">
+                        <div class="tdate">[2018]</div>
+                        <strong>Бидний зам анх огтлолцсон мөч.</strong>
+                        <div class="sub">Нэг харц, нэг инээд — тэр мөчид л бүх зүйл холбогдсон.</div>
+                    </div>
+                    <div class="titem">
+                        <div class="tdate">[09 27, 2024]</div>
+                        <strong>Анхны болзоо</strong>
+                        <div class="sub">Сандарч инээмсэглэсэн мөчүүд, халуун гарын илч, шөнө оройн ярианууд.</div>
+                    </div>
+                    <div class="titem">
+                        <div class="tdate">[10 26, 2024]</div>
+                        <strong>Хоёулаа нэгэн ертөнц болсон мөч.</strong>
+                        <div class="sub">Нэг зүрхний цохилт, хоёр сэтгэл, төгсгөлгүй аялал.</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+<section id="memories">
+  <div class="container">
+    <h2>Хамтдаа бүтээсэн дурсамжууд</h2>
+    <div class="gallery" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px;">
+      <img src="img/1.jpg" alt="Sunrise walk" loading="lazy" style="width:100%;height:auto;border-radius:16px;border:1px solid rgba(255,255,255,.12);object-fit:cover;">
+      <img src="img/2.jpg" alt="Café date" loading="lazy" style="width:100%;height:auto;border-radius:16px;border:1px solid rgba(255,255,255,.12);object-fit:cover;">
+      <img src="img/33.png" alt="Birthday smile" loading="lazy" style="width:100%;height:auto;border-radius:16px;border:1px solid rgba(255,255,255,.12);object-fit:cover;">
+      <img src="img/44.jpg" alt="Study time" loading="lazy" style="width:100%;height:auto;border-radius:16px;border:1px solid rgba(255,255,255,.12);object-fit:cover;">
+      <img src="img/5.jpg" alt="First trip" loading="lazy" style="width:100%;height:auto;border-radius:16px;border:1px solid rgba(255,255,255,.12);object-fit:cover;">
+      <img src="img/6.png" alt="Cozy movie" loading="lazy" style="width:100%;height:auto;border-radius:16px;border:1px solid rgba(255,255,255,.12);object-fit:cover;">
+      <img src="img/7.png" alt="Cozy movie" loading="lazy" style="width:100%;height:auto;border-radius:16px;border:1px solid rgba(255,255,255,.12);object-fit:cover;">
+      <img src="img/8.jpg" alt="Cozy movie" loading="lazy" style="width:100%;height:auto;border-radius:16px;border:1px solid rgba(255,255,255,.12);object-fit:cover;">
+      <img src="img/9.png" alt="Cozy movie" loading="lazy" style="width:100%;height:auto;border-radius:16px;border:1px solid rgba(255,255,255,.12);object-fit:cover;">
+      <img src="img/10.JPG" alt="Cozy movie" loading="lazy" style="width:100%;height:auto;border-radius:16px;border:1px solid rgba(255,255,255,.12);object-fit:cover;">
+
+    </div>
+  </div>
+  <!-- Background music (polite autoplay with user consent) -->
+<!-- Background music (autoplay with gentle fade-in) -->
+  <audio id="bgm" src="audio/song.mp3" preload="auto" loop></audio>
+  <button id="musicToggle" class="music-btn" aria-pressed="false" title="Play music" aria-label="Play background music">♫</button>
+
+  <style>
+    .music-btn{
+      position:fixed;right:16px;bottom:18px;z-index:60;
+      border:1px solid rgba(255,255,255,.18);
+      background:rgba(255,255,255,.08);color:#e6f0ff;
+      width:44px;height:44px;border-radius:50%;
+      display:grid;place-items:center;font-size:18px;
+      backdrop-filter:blur(8px);box-shadow:0 10px 30px rgba(0,0,0,.25);
+      cursor:pointer
+    }
+    .music-btn[aria-pressed="true"]{
+      background:linear-gradient(135deg, var(--accent), var(--accent-2));color:#111
+    }
+    .music-btn:focus{outline:2px solid #fff2}
+    @media (prefers-reduced-motion: no-preference){
+      .music-btn:not([aria-pressed="true"]){animation:pulse 1.6s ease-in-out infinite}
+      @keyframes pulse{0%,100%{transform:scale(1)}50%{transform:scale(1.08)}}
+    }
+  </style>
+
+  <script>
+    const audio = document.getElementById('bgm');
+    const btn = document.getElementById('musicToggle');
+
+    function updateBtn(){
+      const playing = !audio.paused;
+      btn.setAttribute('aria-pressed', playing);
+      btn.title = playing ? 'Pause music' : 'Play music';
+    }
+
+    async function tryAutoplay(){
+      try {
+        audio.volume = 0;           // start silent
+        await audio.play();         // allowed autoplay
+        setTimeout(()=>audio.volume = 1, 800); // fade-in
+        localStorage.setItem('music_pref','on');
+      } catch(e) { /* blocked until tap */ }
+      updateBtn();
+    }
+
+    window.addEventListener('load', () => {
+      const pref = localStorage.getItem('music_pref');
+      if(pref === 'on') { tryAutoplay(); }
+      else { tryAutoplay(); } // attempt on first load too
+    });
+
+    btn.addEventListener('click', () => {
+      if(audio.paused){ audio.play(); localStorage.setItem('music_pref','on'); }
+      else { audio.pause(); localStorage.setItem('music_pref','off'); }
+      updateBtn();
+    });
+  </script>
+
+</section>
+
+        <section id="letter">
+            <div class="container">
+                <h2>Чамдаа бичсэн захидал</h2>
+                <div class="card">
+                    <p style="margin:0; line-height:1.7">Миний хайрт Цэлмүүн-Эрдэнэ,<br><br>
+                        Баярлалаа, мартагдашгүй нэг жилийг хамтдаа бүтээсэнд.
+                        Чи минь жирийн өдрүүдийг гэгээлэг болгож, хэцүү мөчүүдийг илүү зөөлөн болгодог.
+                        Бид хоёрын хамтдаа хийж бүтээсэн бүх зүйлд би баярладаг,
+                        би чинийхээ бүх зүйлд хайртай, бас бахархдаг.
+                        Төрсөн өдрийн болон ойн баярын чинь мэнд хүргэе.
+                        Бид хоёрыг олон олон он жилүүд, аз жаргалтай мөчүүд хүлээж байна,
+                        миний хайр, хайрдаа итгэх итгэлээ хэзээ ч битгий алдаарай.
+                        Би хааяадаа чамайгаа гомдоож, уурлуулж, нулимсыг чинь ч дуслуулдаг тэнэг
+                        намайгаа уучлаарай.
+                        Би хүү, та хоёртоо хязгааргүйгээс ч илүү их хайртай. 💖<br>Хайраас нь
+                    </p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container" style="display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap">
+            <span>♡ <span id="year"></span> Us</span>
+            <span>♡18 нас хүрсний баярын мэнд ♡</span>
+        </div>
+    </footer>
+
+    <script>
+        // Set year
+        document.getElementById('year').textContent = new Date().getFullYear();
+        // Mobile menu toggle
+        const toggle = document.getElementById('menu-toggle');
+        const menu = document.getElementById('menu');
+        toggle.addEventListener('click', () => {
+            toggle.classList.toggle('active');
+            menu.classList.toggle('show');
+        });
+    </script>
+</body>
+
+</html>
